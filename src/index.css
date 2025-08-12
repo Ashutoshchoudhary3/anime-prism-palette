@@ -8,35 +8,62 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Anime-inspired vibrant color palette */
+    --background: 240 15% 8%;
+    --foreground: 300 20% 95%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 240 20% 12%;
+    --card-foreground: 300 15% 92%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 240 25% 15%;
+    --popover-foreground: 300 15% 92%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Electric anime primary colors */
+    --primary: 270 100% 65%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 280 100% 75%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Hot pink secondary */
+    --secondary: 320 100% 60%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Neon cyan accent */
+    --accent: 180 100% 65%;
+    --accent-foreground: 240 15% 8%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Electric blue muted */
+    --muted: 240 30% 18%;
+    --muted-foreground: 240 15% 70%;
+
+    /* Success green */
+    --success: 140 100% 55%;
+    --success-foreground: 0 0% 100%;
+
+    /* Warning orange */
+    --warning: 30 100% 60%;
+    --warning-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 240 25% 20%;
+    --input: 240 25% 15%;
+    --ring: 270 100% 65%;
 
-    --radius: 0.5rem;
+    /* Anime gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
+    --gradient-secondary: linear-gradient(135deg, hsl(var(--secondary)), hsl(320 100% 70%));
+    --gradient-accent: linear-gradient(135deg, hsl(var(--accent)), hsl(180 100% 75%));
+    --gradient-hero: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--secondary)) 50%, hsl(var(--accent)) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(var(--card)) 0%, hsl(240 25% 15%) 100%);
+
+    /* Anime shadows and glows */
+    --shadow-neon: 0 0 20px hsl(var(--primary) / 0.5);
+    --shadow-pink: 0 0 20px hsl(var(--secondary) / 0.4);
+    --shadow-cyan: 0 0 20px hsl(var(--accent) / 0.4);
+    --shadow-card: 0 8px 32px hsl(240 30% 5% / 0.6);
+
+    --radius: 0.75rem;
 
     --sidebar-background: 0 0% 98%;
 
@@ -101,5 +128,64 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  /* Anime-style utility classes */
+  .gradient-primary {
+    background: var(--gradient-primary);
+  }
+  
+  .gradient-secondary {
+    background: var(--gradient-secondary);
+  }
+  
+  .gradient-accent {
+    background: var(--gradient-accent);
+  }
+  
+  .gradient-hero {
+    background: var(--gradient-hero);
+  }
+  
+  .gradient-card {
+    background: var(--gradient-card);
+  }
+  
+  .shadow-neon {
+    box-shadow: var(--shadow-neon);
+  }
+  
+  .shadow-pink {
+    box-shadow: var(--shadow-pink);
+  }
+  
+  .shadow-cyan {
+    box-shadow: var(--shadow-cyan);
+  }
+  
+  .shadow-card {
+    box-shadow: var(--shadow-card);
+  }
+  
+  .anime-glow {
+    filter: drop-shadow(0 0 10px currentColor);
+  }
+  
+  .rating-excellent {
+    @apply bg-success text-success-foreground;
+  }
+  
+  .rating-good {
+    @apply bg-accent text-accent-foreground;
+  }
+  
+  .rating-average {
+    @apply bg-warning text-warning-foreground;
+  }
+  
+  .rating-poor {
+    @apply bg-destructive text-destructive-foreground;
   }
 }
