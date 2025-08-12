@@ -3,18 +3,33 @@ import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import CategoryTabs from "@/components/CategoryTabs";
 import RatingCard from "@/components/RatingCard";
-import { getDataByType } from "@/data/sampleData";
+import { getDataByType, getAllData } from "@/data/sampleData";
 
 const Index = () => {
   const [activeCategory, setActiveCategory] = useState("anime");
-  const data = getDataByType(activeCategory);
+  const [searchQuery, setSearchQuery] = useState("");
+  const rawData = getDataByType(activeCategory);
+  
+  // Filter data based on search query
+  const data = searchQuery
+    ? rawData.filter(item =>
+        item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        item.genre.some(g => g.toLowerCase().includes(searchQuery.toLowerCase()))
+      )
+    : rawData;
 
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      <HeroSection />
+      <HeroSection 
+        searchQuery={searchQuery}
+        onSearchChange={setSearchQuery}
+        onExploreClick={() => {
+          document.getElementById('content-section')?.scrollIntoView({ behavior: 'smooth' });
+        }}
+      />
       
-      <main className="container mx-auto px-4 py-12">
+      <main id="content-section" className="container mx-auto px-4 py-12">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold mb-4">
             <span className="gradient-hero bg-clip-text text-transparent">

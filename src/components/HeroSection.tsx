@@ -2,7 +2,13 @@ import { Button } from "@/components/ui/button";
 import { Search } from "lucide-react";
 import heroImage from "@/assets/anime-hero-bg.jpg";
 
-const HeroSection = () => {
+interface HeroSectionProps {
+  searchQuery: string;
+  onSearchChange: (query: string) => void;
+  onExploreClick: () => void;
+}
+
+const HeroSection = ({ searchQuery, onSearchChange, onExploreClick }: HeroSectionProps) => {
   return (
     <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
       <div 
@@ -28,11 +34,18 @@ const HeroSection = () => {
             <input
               type="text"
               placeholder="Search anime, manga, manhwa..."
+              value={searchQuery}
+              onChange={(e) => onSearchChange(e.target.value)}
               className="w-full px-4 py-3 pl-12 rounded-xl bg-card/80 backdrop-blur border border-border focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 text-foreground"
             />
             <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
           </div>
-          <Button variant="hero" size="lg" className="animate-neon-glow">
+          <Button 
+            variant="hero" 
+            size="lg" 
+            className="animate-neon-glow"
+            onClick={onExploreClick}
+          >
             Explore Now
           </Button>
         </div>
